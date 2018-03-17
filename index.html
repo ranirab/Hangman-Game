@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <script src="assets/javascript/game.js"></script> -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Hangman Game</title>
+</head>
+<body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    <div id="game"></div>
+      $(document).ready(function() {
+  
+        <h1>Hangman Game</h1>
+
+        <p> Press any key to get started! </p>
+
+        <p>Guess the color. </p>
+        
+        
+       
+        
+
+        var words = [ "red" ,"yellow", "green", "purple" ];
+        var res;
+
+        for (var i = 0; i < words.length; i++){
+        console.log(words[i]);
+
+        }
+
+        var randomWordChoice = words[Math.floor(Math.random() * words.length )];
+            alert (randomWordChoice);
+
+        // var str = randomWordChoice;  // "" string word is given, but what if need randomWordChoce
+        res = randomWordChoice.split("");
+        console.log(res);
+
+
+        // document.getElementById("game").innerHTML = res;
+
+
+
+            //     document.getElementById("demo").innerHTML = "Hello JavaScript!";
+// <!-- 
+//         } 
+
+//         document.onkeyup = function(event) {
+
+// // Determines which key was pressed.
+//         var userGuess = event.key.toLowerCase;
+
+//         if (myFarm[j].charAt(0) === "c" || myFarm[j].charAt(0) === "o") {
+//           alert("Starts with a c or an o!");
+
+           
+//     }
+//          -->
+
+        //     
+                
+ 
+            //  
+            //    
+                
+          }
+
+
+           </script>
+       
+
+      
+
+           
+       
+
+    
+</body>
+</html>
