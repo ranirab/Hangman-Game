@@ -7,40 +7,122 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    
     <title>Hangman Game</title>
 </head>
 <body>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
-    <div id="game"></div>
+
+    <div class = "container">
+        <div class = "jumbotron">
+            <div class = "row">
+                <div class "col-lg-12">
+                     <p> Please press a key to begin!</p>
+                </div>
+            </div>
+            <div class = "wins">
+                <div class = "row">
+                    <div class = "col-lg-12">
+                        <p>Wins:</p>
+                    </div>
+                </div>
+            </div>
+        <div class = "guesses">
+            <div class = "row">
+                <div class = "col-lg-12">
+                    <p>Number of Guesses:</p>
+                </div>
+            </div>
+        <div class = "already-guessed">
+            <div class = "row">
+                <div class = "col-lg-12">
+                    <p>Letters aleady guessed: </p>
+                </div>
+            </div>
+        </div>
+        <div class = "word">
+            <div class = "row">
+                <div class = "col-lg-12">
+                    <h1 id = "word-display"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+    <script>
+        
+
+   
       $(document).ready(function() {
-  
-        <h1>Hangman Game</h1>
 
-        <p> Press any key to get started! </p>
 
-        <p>Guess the color. </p>
-        
-        
-       
-        
+       var winCount = 0;
+       var maxGuessCount = 0;
+       var lettersAlreadyGuessed = 0;
+       var wrongGuessCount = 0;
 
-        var words = [ "red" ,"yellow", "green", "purple" ];
-        var res;
 
-        for (var i = 0; i < words.length; i++){
-        console.log(words[i]);
+      // word list
+        var words = [ "Maine" ,"Texas", "Ohio", "Illinois", "Idaho", "Montana", "Florida"];
 
-        }
-
+      // choose a random word
         var randomWordChoice = words[Math.floor(Math.random() * words.length )];
-            alert (randomWordChoice);
+        var splitWord = randomWordChoice.split("");
+        console.log(splitWord);
 
-        // var str = randomWordChoice;  // "" string word is given, but what if need randomWordChoce
-        res = randomWordChoice.split("");
-        console.log(res);
+    // display "_ _ _ _ _"
+        
+        var guessDisplayArray = [];
+        var guessDisplay = "";
+        var wordDisplay = document.getElementById("word-display");
+
+        console.log(wordDisplay);
+        for (var i = 0; i <randomWordChoice.length; i++){
+             guessDisplay = guessDisplay + " _ "; 
+             guessDisplayArray.push(" _ ");
+
+             };
+             console.log(guessDisplay);
+       wordDisplay.textContent = guessDisplay;
+      
+      // captures key
+        document.onkeyup = function(event) {
+        var userGuess = event.key.toLowerCase();
+        console.log (userGuess);
+        //checks to see if letter chosen matches
+        for (var j = 0; j < guessDisplayArray.length; j++) {
+            if (randomWordChoice[j].toLowerCase() === userGuess) {
+            //var for capturing string to print from array
+               var displayString = "";
+                 guessDisplayArray[j] = userGuess;
+                for (var k = 0; k < guessDisplayArray.length; k++) {
+                        displayString = displayString + guessDisplayArray[k].toUpperCase();
+                        console.log (displayString);
+
+                    wordDisplay.textContent = displayString;
+        }
+            } 
+
+            else {  }
+                
+
+        };
+
+
+
+
+
+
+
+            };   
+         
+ 
+        
+
+        
+//  closing bracket for document ready
+      });
 
 
         // document.getElementById("game").innerHTML = res;
@@ -48,13 +130,13 @@
 
 
             //     document.getElementById("demo").innerHTML = "Hello JavaScript!";
-// <!-- 
-//         } 
+// <!--  
+//         }
 
-//         document.onkeyup = function(event) {
+//         
 
 // // Determines which key was pressed.
-//         var userGuess = event.key.toLowerCase;
+//         
 
 //         if (myFarm[j].charAt(0) === "c" || myFarm[j].charAt(0) === "o") {
 //           alert("Starts with a c or an o!");
@@ -69,7 +151,7 @@
             //  
             //    
                 
-          }
+          
 
 
            </script>
