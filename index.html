@@ -1,171 +1,156 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- <script src="assets/javascript/game.js"></script> -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   
+
     <title>Hangman Game</title>
 </head>
+
 <body>
-
-
-    <div class = "container">
-        <div class = "jumbotron">
-            <div class = "row">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
                 <div class "col-lg-12">
-                     <p> Please press a key to begin!
-                         <p> Guess a State in the USA.</p>
-                     </p>
+                    <p> Please press a key to begin!</p>
+                    <p> Guess a state in the USA.</p>
+                    </p>
                 </div>
             </div>
-            <div class = "wins">
-                <div class = "row">
-                    <div class = "col-lg-12">
+            <div class="wins">
+                <div class="row">
+                    <div class="col-lg-12">
                         <p>Wins:</p>
                     </div>
                 </div>
             </div>
-        <div class = "guesses">
-            <div class = "row">
-                <div class = "col-lg-12">
-                    <p>Number of Guesses:</p>
+            <div class="guesses">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Number of Guesses:</p>
+                        <p id="guesses-count"></p>
+                    </div>
+                </div>
+                <div class="already-guessed">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p>Letters aleady guessed: </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="word">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 id="word-display"></h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        <div class = "already-guessed">
-            <div class = "row">
-                <div class = "col-lg-12">
-                    <p>Letters aleady guessed: </p>
-                </div>
-            </div>
-        </div>
-        <div class = "word">
-            <div class = "row">
-                <div class = "col-lg-12">
-                    <h1 id = "word-display"></h1>
-                </div>
-            </div>
-        </div>
-    </div>
-                
-    <script>
-        
 
-   
-      $(document).ready(function() {
+            <script>
+                $(document).ready(function () {
+                    var winCount = 0;
+                    var guessCount = 10;
+                    var lettersAlreadyGuessed = 0;
 
+                    // word list
+                    var words = ["Maine", "Texas", "Ohio", "Illinois", "Idaho", "Montana", "Florida"];
 
-       var winCount = 0;
-       var maxGuessCount = 0;
-       var lettersAlreadyGuessed = 0;
-       var wrongGuessCount = 0;
+                    // choose a random word
+                    var randomWordChoice = words[Math.floor(Math.random() * words.length)];
 
+                    //splits word into array
+                    var splitWord = randomWordChoice.split("");
+                    console.log(splitWord);
+                    console.log(splitWord.length);
 
-      // word list
-        var words = [ "Maine" ,"Texas", "Ohio", "Illinois", "Idaho", "Montana", "Florida"];
+                    // display "_ _ _ _ _"
 
-      // choose a random word
-        var randomWordChoice = words[Math.floor(Math.random() * words.length )];
-        var splitWord = randomWordChoice.split("");
-        console.log(splitWord);
+                    var guessDisplayArray = [];
+                    var guessDisplay = "";
+                    var wordDisplay = document.getElementById("word-display");
+                    var guessCountDisplay = document.getElementById("guesses-count");
+                    console.log(guessDisplayArray);
+                    console.log(guessDisplay);
+                    console.log(wordDisplay);
 
-    // display "_ _ _ _ _"
-        
-        var guessDisplayArray = [];
-        var guessDisplay = "";
-        var wordDisplay = document.getElementById("word-display");
-
-        console.log(wordDisplay);
-        for (var i = 0; i <randomWordChoice.length; i++){
-             guessDisplay = guessDisplay + " _ "; 
-             guessDisplayArray.push(" _ ");
-
-             };
-             console.log(guessDisplay);
-       wordDisplay.textContent = guessDisplay;
-      
-      // captures key
-        document.onkeyup = function(event) {
-        var userGuess = event.key.toLowerCase();
-        console.log (userGuess);
-        //checks to see if letter chosen matches
-        for (var j = 0; j < guessDisplayArray.length; j++) {
-            if (randomWordChoice[j].toLowerCase() === userGuess) {
-            //var for capturing string to print from array
-               var displayString = "";
-                 guessDisplayArray[j] = userGuess;
-                for (var k = 0; k < guessDisplayArray.length; k++) {
-                        displayString = displayString + guessDisplayArray[k].toUpperCase();
-                        console.log (displayString);
-
-                    wordDisplay.textContent = displayString;
+                    console.log(guessCount);
                     
-        }
-            } 
-               
+                    for (var i = 0; i < randomWordChoice.length; i++) {
+                        guessDisplay = guessDisplay + " _ ";
+                        guessDisplayArray.push(" _ ");
+                    };
 
-            else {  }
-                
+                    //prints words to guessDisplay
+                    console.log(guessDisplay);
+                    
+                    wordDisplay.textContent = guessDisplay;
 
-        };
+                    // captures key
+                    document.onkeyup = function (event) {
+                        var found = false;
+                        var userGuess = event.key.toLowerCase();
+                        console.log(userGuess);
+                        
+                        
+                        //checks to see if letter chosen matches
+                        for (var j = 0; j < guessDisplayArray.length; j++) {
+
+                        
+                            if (randomWordChoice[j].toLowerCase() === userGuess) {
+                                //var for capturing string to print from array  
+                                //var to display string
+                                var displayString = "";
+                                guessDisplayArray[j] = userGuess;
+                                found = true;
+                                
+                                //converts to string
+                                for (var k = 0; k < guessDisplayArray.length; k++) {
+                                    displayString = displayString + guessDisplayArray[k].toUpperCase();
+                                    console.log(displayString);
+
+                                    //prints string to jumbotron
+                                    wordDisplay.textContent = displayString;
+                                }
+                            } else {
+                                
+                                console.log("missed3" + found);
+                            }
+
+                        }
+                        console.log("missed4" + found);
+                        if (!found) {
+                            guessCount--;
+                            console.log (guessCount);
+                            
+                        };
+                        
+                         guessCountDisplay.textContent = guessCount;
+                            console.log(guessCount);
+                           
+                            
+                    }
+
+
+
+                });
 
 
 
 
+                //  closing bracket for document ready
 
 
+                //
+            </script>
 
-            };   
-         
- 
-        
-
-        
-//  closing bracket for document ready
-      });
-
-
-        // document.getElementById("game").innerHTML = res;
-
-
-
-            //     document.getElementById("demo").innerHTML = "Hello JavaScript!";
-// <!--  
-//         }
-
-//         
-
-// // Determines which key was pressed.
-//         
-
-//         if (myFarm[j].charAt(0) === "c" || myFarm[j].charAt(0) === "o") {
-//           alert("Starts with a c or an o!");
-
-           
-//     }
-//          -->
-
-        //     
-                
- 
-            //  
-            //    
-                
-          
-
-
-           </script>
-       
-
-      
-
-           
-       
-
-    
 </body>
+
 </html>
