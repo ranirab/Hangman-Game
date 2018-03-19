@@ -28,6 +28,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <p>Wins:</p>
+                        <p id="wins-display"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="loses">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Losses:</p>
+                        <p id="loses-display"></p>
                     </div>
                 </div>
             </div>
@@ -38,10 +47,12 @@
                         <p id="guesses-count"></p>
                     </div>
                 </div>
+
                 <div class="already-guessed">
                     <div class="row">
                         <div class="col-lg-12">
                             <p>Letters aleady guessed: </p>
+                            <p id="letters-display"></p>
                         </div>
                     </div>
                 </div>
@@ -54,103 +65,9 @@
                 </div>
             </div>
 
-            <script>
-                $(document).ready(function () {
-                    var winCount = 0;
-                    var guessCount = 10;
-                    var lettersAlreadyGuessed = 0;
-
-                    // word list
-                    var words = ["Maine", "Texas", "Ohio", "Illinois", "Idaho", "Montana", "Florida"];
-
-                    // choose a random word
-                    var randomWordChoice = words[Math.floor(Math.random() * words.length)];
-
-                    //splits word into array
-                    var splitWord = randomWordChoice.split("");
-                    console.log(splitWord);
-                    console.log(splitWord.length);
-
-                    // display "_ _ _ _ _"
-
-                    var guessDisplayArray = [];
-                    var guessDisplay = "";
-                    var wordDisplay = document.getElementById("word-display");
-                    var guessCountDisplay = document.getElementById("guesses-count");
-                    console.log(guessDisplayArray);
-                    console.log(guessDisplay);
-                    console.log(wordDisplay);
-
-                    console.log(guessCount);
-                    
-                    for (var i = 0; i < randomWordChoice.length; i++) {
-                        guessDisplay = guessDisplay + " _ ";
-                        guessDisplayArray.push(" _ ");
-                    };
-
-                    //prints words to guessDisplay
-                    console.log(guessDisplay);
-                    
-                    wordDisplay.textContent = guessDisplay;
-
-                    // captures key
-                    document.onkeyup = function (event) {
-                        var found = false;
-                        var userGuess = event.key.toLowerCase();
-                        console.log(userGuess);
-                        
-                        
-                        //checks to see if letter chosen matches
-                        for (var j = 0; j < guessDisplayArray.length; j++) {
-
-                        
-                            if (randomWordChoice[j].toLowerCase() === userGuess) {
-                                //var for capturing string to print from array  
-                                //var to display string
-                                var displayString = "";
-                                guessDisplayArray[j] = userGuess;
-                                found = true;
-                                
-                                //converts to string
-                                for (var k = 0; k < guessDisplayArray.length; k++) {
-                                    displayString = displayString + guessDisplayArray[k].toUpperCase();
-                                    console.log(displayString);
-
-                                    //prints string to jumbotron
-                                    wordDisplay.textContent = displayString;
-                                }
-                            } else {
-                                
-                                console.log("missed3" + found);
-                            }
-
-                        }
-                        console.log("missed4" + found);
-                        if (!found) {
-                            guessCount--;
-                            console.log (guessCount);
-                            
-                        };
-                        
-                         guessCountDisplay.textContent = guessCount;
-                            console.log(guessCount);
-                           
-                            
-                    }
-
-
-
-                });
-
-
-
-
-                //  closing bracket for document ready
-
-
-                //
-            </script>
-
+           <script src="assets/javascript/game.js"></script> </script>
+        </div>
+    </div>
 </body>
 
 </html>
