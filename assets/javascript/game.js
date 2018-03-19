@@ -16,12 +16,11 @@ var wordArray = randomWord.split("");
 console.log(wordArray);
 console.log(wordArray.length);
 
-// display "_ _ _ _ _"
 var matchArray = [];
 var guessArray = [];
 var guessString = "";
 var wordDisplay = document.getElementById("word-display");
-var guessCountDisplay = document.getElementById("guesses-count");
+var guessDisplay = document.getElementById("guesses-count");
 var winDisplay = document.getElementById("wins-display");
 var loseDisplay = document.getElementById("loses-display");
 var lettersDisplay = document.getElementById("letters-display");
@@ -55,45 +54,27 @@ document.onkeyup = function (event) {
             guessArray[i] = userGuess;
             matchArray.push(userGuess);
             found = true;
-            console.log("userGuess " + userGuess);
-
+            
         }
-        //var for capturing string to print from array  
-        // //var to display string
-        // var displayString = "";
-        // guessDisplayArray[j] = userGuess;
-        // found = true;
-
-        //converts to string
-        // for (var k = 0; k < guessDisplayArray.length; k++) {
-        //     displayString = displayString + guessDisplayArray[k].toUpperCase();
-        //     console.log(displayString);
-        //     //prints string to jumbotron
-        //     wordDisplay.textContent = displayString;
-        // }
-
-        //put wrong letter in letter display
-        //     } else  {
-
-        //  var spanElement = document.createElement("span");
-        //   spanElement.textContent = userGuess;
-
-
-        //  lettersDisplay.appendChild(spanElement);
-
-
-        //     };
+     
 
     }
-    console.log("missed4" + found);
+    console.log("found" + found);
     if (!found) {
         guessCount++;
 
     }
-    guessCountDisplay.textContent = guessCount;
+    guessDisplay.textContent = guessCount;
     console.log(guessCount);
 
-    if (guessCount = 10) {
+    var tempString = "";
+            console.log("userGuess " + userGuess);
+            for(var j = 0; j < wordArray.length; j++) {
+                tempString = tempString + guessArray[j].toUpperCase();
+            };
+            wordDisplay.textContent = tempString;
+
+    if (guessCount == 10) {
         //you lose
         loseDisplay.textContent = "Sorry, you lose.";
         console.log(loseDisplay);
