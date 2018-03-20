@@ -63,22 +63,26 @@ $(document).ready(function () {
 
         wordDisplay.textContent = tempString;
         console.log("Guess Count " + guessCount);
-        console.log("found " + found);
+        
 
         if (guessCount == 10) {
             //you lose
-            loseDisplay.textContent = "Sorry, you lose.";
+            lossCount++;
+            loseDisplay.textContent = "Sorry, you lose. Loss Count: " + lossCount;
+            
         }
         if (wordArray.length == matchArray.length) {
             ///you win
             winCount++;
-            winDisplay.textContent = "You got it!  Win count: " + winCount;;
+            winDisplay.textContent = "You got it!  Win count: " + winCount;
              
 
             
         }
 
     }
-
+    function myFunction() {
+        location.reload();
+    }
     //  closing bracket for document ready      
 })
