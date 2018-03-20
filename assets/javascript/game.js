@@ -1,9 +1,8 @@
 $(document).ready(function () {
-
     var winCount = 0;
+    var lossCount = 0;
     var guessCount = 0;
     var lettersAlreadyGuessed = 0;
-   
 
     // word list
     var words = ["Maine", "Texas", "Ohio", "Illinois", "Idaho", "Montana", "Florida"];
@@ -39,7 +38,6 @@ $(document).ready(function () {
         var userGuess = event.key.toLowerCase();
         console.log("userGuess " + userGuess);
 
-
         //checks to see if letter chosen matches
         for (var i = 0; i < wordArray.length; i++) {
             if (wordArray[i].toLowerCase() == userGuess) {
@@ -73,17 +71,14 @@ $(document).ready(function () {
         }
         if (wordArray.length == matchArray.length) {
             ///you win
-            winDisplay.textContent = "You win!";
-        }
-    }
+            winCount++;
+            winDisplay.textContent = "You got it!  Win count: " + winCount;;
+             
 
+            
+        }
+
+    }
 
     //  closing bracket for document ready      
 })
-
-
-
-
-
-
-//
